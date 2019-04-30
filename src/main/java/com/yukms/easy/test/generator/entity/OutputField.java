@@ -1,9 +1,8 @@
-package com.yukms.easy.test.generator.entity.output;
+package com.yukms.easy.test.generator.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import com.yukms.easy.test.generator.entity.param.TestEnv;
-import com.yukms.easy.test.generator.entity.param.TestGeneratorData;
 import lombok.Data;
 
 /**
@@ -14,9 +13,9 @@ public class OutputField {
     /** package */
     private String pakg;
     /** 导入类 */
-    private List<Class<?>> imports;
+    private List<Class<?>> imports = new ArrayList<>();
     /** 测试环境 */
     private TestEnv env;
     /** 测试数据 */
-    private List<TestGeneratorData> data;
+    private List<TestGeneratorData> data = new ArrayList<>();
 }

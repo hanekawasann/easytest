@@ -25,23 +25,24 @@ public class OrderServiceImplTest {
     private IOrderService orderService;
 
     @Test
-    public void test_submitOrder(@Injectable IUserCheckService userCheckService, @Injectable IMailService mailService) {
+    public void test_submitOrder(@Injectable IUserCheckService userCheckService, @Injectable IMailService mailService)
+        throws Exception {
         new Expectations() {
             {
                 userCheckService.check(123456L);
-                result = true;
-                mailService.sendMail(123456L, "下单成功");
-                result = true;
+                result = new RuntimeException();
+                //mailService.sendMail(123456L, "下单成功");
+                //result = true;
             }
         };
         boolean isSuccess = orderService.submitOrder(123456L, 78910L);
-        Assert.assertTrue(isSuccess);
+        //Assert.assertTrue(isSuccess);
         new VerificationsInOrder() {
             {
                 userCheckService.check(123456L);
                 times = 1;
-                mailService.sendMail(123456L, "下单成功");
-                times = 1;
+                //mailService.sendMail(123456L, "下单成功");
+                //times = 1;
             }
         };
     }

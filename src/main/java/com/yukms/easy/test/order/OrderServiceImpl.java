@@ -16,7 +16,7 @@ public class OrderServiceImpl implements IOrderService {
     @Resource
     private IUserCheckService userCheckService;
 
-    public boolean submitOrder(long buyerId, long itemId) {
+    public boolean submitOrder(long buyerId, long itemId) throws Exception {
         if (!userCheckService.check(buyerId)) {
             return false;
         }

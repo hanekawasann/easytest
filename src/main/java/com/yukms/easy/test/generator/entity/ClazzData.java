@@ -1,4 +1,4 @@
-package com.yukms.easy.test.generator.entity.param;
+package com.yukms.easy.test.generator.entity;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -17,4 +17,6 @@ public class ClazzData {
     private List<Object> params = new ArrayList<>();
     /** 出参 */
     private Object result;
+    /** 异常 */
+    private Throwable throwable;
 }

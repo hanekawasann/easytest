@@ -1,4 +1,4 @@
-package com.yukms.easy.test.generator.entity.param;
+package com.yukms.easy.test.generator.entity;
 
 /**
  * @author yukms 763803382@qq.com 2019/4/30 18:30

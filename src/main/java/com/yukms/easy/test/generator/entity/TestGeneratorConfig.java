@@ -1,4 +1,4 @@
-package com.yukms.easy.test.generator.entity.param;
+package com.yukms.easy.test.generator.entity;
 
 import lombok.Data;
 
