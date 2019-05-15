@@ -1,4 +1,4 @@
-package com.yukms.easy.test.generator.entity;
+package com.yukms.easy.test.parser.entity;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;

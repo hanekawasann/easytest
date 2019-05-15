@@ -1,4 +1,4 @@
-package com.yukms.easy.test.generator.entity;
+package com.yukms.easy.test.parser.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
