@@ -23,10 +23,13 @@ public class OrderServiceImplTest {
     @Tested
     @Resource
     private IOrderService orderService;
+    @Injectable
+    private IUserCheckService userCheckService;
+    @Injectable
+    private IMailService mailService;
 
     @Test
-    public void test_submitOrder(@Injectable IUserCheckService userCheckService, @Injectable IMailService mailService)
-        throws Exception {
+    public void test_submitOrder() throws Exception {
         new Expectations() {
             {
                 userCheckService.check(123456L);

@@ -1,6 +1,6 @@
 package com.yukms.easy.test.generator;
 
-import com.yukms.easy.test.generator.entity.UnitTestFile;
+import com.yukms.easy.test.generator.entity.UnitTestClass;
 import com.yukms.easy.test.parser.entity.UnitTestXml;
 
 /**
@@ -8,7 +8,7 @@ import com.yukms.easy.test.parser.entity.UnitTestXml;
  */
 public final class UnitTestGenerator {
 
-    public static UnitTestFile generate(UnitTestXml data) {
+    public static UnitTestClass generate(UnitTestXml data) {
         return null;
     }
 
