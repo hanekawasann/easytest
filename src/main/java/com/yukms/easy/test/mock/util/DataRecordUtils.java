@@ -1,4 +1,4 @@
-package com.yukms.easy.test.test.util;
+package com.yukms.easy.test.mock.util;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -12,8 +12,8 @@ import java.util.Date;
 import com.alibaba.ttl.TransmittableThreadLocal;
 import com.esotericsoftware.yamlbeans.YamlConfig;
 import com.esotericsoftware.yamlbeans.YamlWriter;
-import com.yukms.easy.test.test.mock.DataRecord;
-import com.yukms.easy.test.test.mock.MockData;
+import com.yukms.easy.test.mock.mock.DataRecord;
+import com.yukms.easy.test.mock.mock.MockData;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;

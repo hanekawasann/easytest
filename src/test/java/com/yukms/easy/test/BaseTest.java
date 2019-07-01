@@ -1,6 +1,6 @@
 package com.yukms.easy.test;
 
-import com.yukms.easy.test.test.junit.TestClassAndMethod;
+import com.yukms.easy.test.mock.junit.TestClassAndMethod;
 import org.junit.Before;
 import org.junit.Rule;
 

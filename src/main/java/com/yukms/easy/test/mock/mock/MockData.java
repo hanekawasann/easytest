@@ -1,4 +1,4 @@
-package com.yukms.easy.test.test.mock;
+package com.yukms.easy.test.mock.mock;
 
 import java.util.ArrayList;
 import java.util.List;

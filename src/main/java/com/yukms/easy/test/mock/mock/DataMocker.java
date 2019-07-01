@@ -1,4 +1,4 @@
-package com.yukms.easy.test.test.mock;
+package com.yukms.easy.test.mock.mock;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import com.yukms.easy.test.test.util.ClassUtil;
+import com.yukms.easy.test.mock.util.ClassUtil;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.util.ReflectionUtils;
 

@@ -1,4 +1,4 @@
-package com.yukms.easy.test.test.junit;
+package com.yukms.easy.test.mock.junit;
 
 import java.lang.reflect.Method;
 

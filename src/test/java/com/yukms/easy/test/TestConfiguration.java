@@ -1,6 +1,6 @@
 package com.yukms.easy.test;
 
-import com.yukms.easy.test.test.mock.MockDataAspectJ;
+import com.yukms.easy.test.mock.mock.MockDataAspectJ;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

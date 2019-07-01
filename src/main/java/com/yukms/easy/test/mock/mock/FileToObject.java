@@ -1,4 +1,4 @@
-package com.yukms.easy.test.test.mock;
+package com.yukms.easy.test.mock.mock;
 
 import java.io.BufferedReader;
 import java.io.IOException;

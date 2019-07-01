@@ -1,9 +1,9 @@
-package com.yukms.easy.test.test.mock;
+package com.yukms.easy.test.mock.mock;
 
 import java.lang.reflect.Method;
 
-import com.yukms.easy.test.test.util.AspectJUtils;
-import com.yukms.easy.test.test.util.DataRecordUtils;
+import com.yukms.easy.test.mock.util.AspectJUtils;
+import com.yukms.easy.test.mock.util.DataRecordUtils;
 import lombok.extern.log4j.Log4j2;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
