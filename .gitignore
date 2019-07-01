@@ -32,3 +32,4 @@ mvnw
 mvnw.cmd
 /.gitignore
 coverage-failure.txt
+/.record/

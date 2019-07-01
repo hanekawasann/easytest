@@ -16,6 +16,7 @@ public class UnitTestClass {
     private String importPath;
     /** 类名 */
     private String className;
+    //private List<>
     /** 方法 */
     List<UnitTestMethod> methods = new ArrayList<>();
 }

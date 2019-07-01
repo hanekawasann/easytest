@@ -2,51 +2,23 @@ package com.yukms.easy.test.order;
 
 import javax.annotation.Resource;
 
-import com.yukms.easy.test.mail.IMailService;
-import com.yukms.easy.test.user.IUserCheckService;
-import mockit.Expectations;
-import mockit.Injectable;
-import mockit.Tested;
-import mockit.VerificationsInOrder;
-import org.junit.Assert;
+import com.yukms.easy.test.EasyTestApplicationTests;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * @author yukms 763803382@qq.com 2019/4/30 16:58
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class OrderServiceImplTest {
-    @Tested
+public class OrderServiceImplTest extends EasyTestApplicationTests {
     @Resource
     private IOrderService orderService;
-    @Injectable
-    private IUserCheckService userCheckService;
-    @Injectable
-    private IMailService mailService;
 
     @Test
     public void test_submitOrder() throws Exception {
-        new Expectations() {
-            {
-                userCheckService.check(123456L);
-                result = true;
-                mailService.sendMail(123456L, "下单成功");
-                result = true;
-            }
-        };
-        boolean isSuccess = orderService.submitOrder(123456L, 78910L);
-        Assert.assertTrue(isSuccess);
-        new VerificationsInOrder() {
-            {
-                userCheckService.check(123456L);
-                times = 1;
-                mailService.sendMail(123456L, "下单成功");
-                times = 1;
-            }
-        };
+        orderService.submitOrder(123456L, 78910L);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void test_submitOrder_exception() throws Exception {
+        orderService.submitOrder(123456L, 78910L);
     }
 }

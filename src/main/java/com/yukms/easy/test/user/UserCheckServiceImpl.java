@@ -9,6 +9,6 @@ import org.springframework.stereotype.Service;
 public class UserCheckServiceImpl implements IUserCheckService {
     @Override
     public boolean check(long userId) {
-        return false;
+        return true;
     }
 }

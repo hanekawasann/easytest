@@ -1,0 +1,7 @@
+!com.yukms.easy.test.test.mock.MockData
+mockClassName: com.yukms.easy.test.mail.MailServiceImpl
+methodName: sendMail
+args:
+  - 123456
+  - 下单成功
+expectedClassName: java.lang.RuntimeException
