@@ -1,6 +1,7 @@
 package com.yukms.easy.test.mock.util;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -11,6 +12,7 @@ import java.util.Date;
 
 import com.alibaba.ttl.TransmittableThreadLocal;
 import com.esotericsoftware.yamlbeans.YamlConfig;
+import com.esotericsoftware.yamlbeans.YamlReader;
 import com.esotericsoftware.yamlbeans.YamlWriter;
 import com.yukms.easy.test.mock.data.DataRecord;
 import com.yukms.easy.test.mock.data.MockData;
@@ -24,7 +26,7 @@ import org.springframework.util.ReflectionUtils;
  * @author yukms 763803382@qq.com 2019/6/28 11:42
  */
 @Log4j2
-public final class DataRecordUtils {
+public final class MockDataUtils {
     private static final ThreadLocal<DataRecord> RECORD_DATA = TransmittableThreadLocal.withInitial(DataRecord::new);
     private static final YamlConfig CONFIG = new YamlConfig();
     private static final String DATA_RECORDS_FILE_NAME = "dataRecords.yaml";
@@ -85,9 +87,9 @@ public final class DataRecordUtils {
             data.setResult(result);
         }
         saveData(folderPath + fileName, data);
+        log.info("保存记录文件" + folderPath + fileName);
         // 记录文件
         dataRecord.addFileNames(fileName);
-        log.info("保存记录文件" + fileName);
         saveSimpleData(folderPath + DATA_RECORDS_FILE_NAME, dataRecord.getFileNames());
     }
 
@@ -105,6 +107,24 @@ public final class DataRecordUtils {
             }
         }
         throw new NoSuchMethodException("未找到Junit测试方法");
+    }
+
+    /**
+     * 加载测试数据
+     *
+     * @param file 测试数据文件
+     * @return 测试数据
+     */
+    public static MockData loadData(File file) throws IOException {
+        YamlReader reader = null;
+        try {
+            reader = new YamlReader(new FileReader(file), CONFIG);
+            return reader.read(MockData.class);
+        } finally {
+            if (reader != null) {
+                reader.close();
+            }
+        }
     }
 
     private static boolean isTestStackTraceElement(StackTraceElement element) {
@@ -157,5 +177,5 @@ public final class DataRecordUtils {
         return new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss_SSSSSS").format(new Date());
     }
 
-    private DataRecordUtils() { }
+    private MockDataUtils() { }
 }
