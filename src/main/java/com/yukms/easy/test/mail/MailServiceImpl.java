@@ -10,6 +10,6 @@ public class MailServiceImpl implements IMailService {
     @Override
     public boolean sendMail(long userId, String content) {
         return true;
-        //throw new RuntimeException();
+        //throw new RuntimeException("未查询到数据");
     }
 }

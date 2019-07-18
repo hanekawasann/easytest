@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.Date;
 
 import com.alibaba.ttl.TransmittableThreadLocal;
+import com.yukms.easy.test.mock.MockConfig;
 import com.yukms.easy.test.mock.data.DataRecord;
 import com.yukms.easy.test.mock.data.MockData;
 import com.yukms.yamlxbeans.YamlxConfig;
@@ -31,7 +32,7 @@ public final class MockDataUtils {
     private static final String FILE_PATH_SPLIT = "\\";
     private static final String FILE_SUFFIX = ".yaml";
     private static final String CLASS_METHOD_SPLIT = "#";
-    private static final String RECORD_FILE_PATH_PREFIX;
+    private static String RECORD_FILE_PATH_PREFIX;
 
     static {
         YamlxConfig.WriteConfig writeConfig = CONFIG.writeConfig;
@@ -52,12 +53,14 @@ public final class MockDataUtils {
         // 输出结束标记
         writeConfig.setExplicitEndDocument(true);
 
-        File file = new File(".record");
-        if (!file.exists()) {
-            file.mkdirs();
+        if (MockConfig.isSaveData()) {
+            File file = new File(".record");
+            if (!file.exists()) {
+                file.mkdirs();
+            }
+            RECORD_FILE_PATH_PREFIX = file.getAbsolutePath();
+            log.info("记录根目录" + RECORD_FILE_PATH_PREFIX);
         }
-        RECORD_FILE_PATH_PREFIX = file.getAbsolutePath();
-        log.info("记录根目录" + RECORD_FILE_PATH_PREFIX);
     }
 
     /**

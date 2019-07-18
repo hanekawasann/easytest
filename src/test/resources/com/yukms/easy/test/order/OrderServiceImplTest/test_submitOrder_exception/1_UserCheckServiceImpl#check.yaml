@@ -1,0 +1,16 @@
+--- 
+!com.yukms.easy.test.mock.data.MockData {
+   ? "mockClass"
+   : !java.lang.Class "com.yukms.easy.test.user.UserCheckServiceImpl",
+   ? "methodName"
+   : !java.lang.String "check",
+   ? "args"
+   : [
+      !java.lang.Long "123456"
+   ],
+   ? "result"
+   : !java.lang.Boolean "true",
+   ? "throwable"
+   : !java.lang.Throwable,
+}
+...

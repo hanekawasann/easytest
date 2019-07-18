@@ -1,0 +1,17 @@
+--- 
+!com.yukms.easy.test.mock.data.MockData {
+   ? "mockClass"
+   : !java.lang.Class "com.yukms.easy.test.order.OrderServiceImpl",
+   ? "methodName"
+   : !java.lang.String "submitOrder",
+   ? "args"
+   : [
+      !java.lang.Long "123456",
+      !java.lang.Long "78910"
+   ],
+   ? "result"
+   : !java.lang.Object,
+   ? "throwable"
+   : !java.lang.RuntimeException "{\"className\":\"java.lang.RuntimeException\",\"message\":\"未查询到数据\"}",
+}
+...

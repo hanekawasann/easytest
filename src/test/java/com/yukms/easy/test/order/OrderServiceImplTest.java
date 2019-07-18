@@ -3,6 +3,7 @@ package com.yukms.easy.test.order;
 import javax.annotation.Resource;
 
 import com.yukms.easy.test.EasyTestApplicationTests;
+import com.yukms.easy.test.mock.annotation.EasyTestMock;
 import org.junit.Test;
 
 /**

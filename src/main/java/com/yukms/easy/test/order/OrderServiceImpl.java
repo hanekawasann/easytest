@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class OrderServiceImpl implements IOrderService {
     @Resource
-    private IMailService mailService;
-    @Resource
     private IUserCheckService userCheckService;
+    @Resource
+    private IMailService mailService;
 
     public boolean submitOrder(long buyerId, long itemId) throws Exception {
         if (!userCheckService.check(buyerId)) {

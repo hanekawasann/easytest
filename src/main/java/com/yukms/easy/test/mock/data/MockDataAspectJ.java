@@ -32,7 +32,14 @@ public class MockDataAspectJ {
             result = DataMocker.getMockData();
         } else {
             // 请求真实数据
-            result = point.proceed();
+            try {
+                result = point.proceed();
+            } catch (Throwable e) {
+                if (MockConfig.isSaveData()) {
+                    MockDataUtils.recordData(point, e);
+                }
+                throw e;
+            }
         }
         if (MockConfig.isSaveData()) {
             MockDataUtils.recordData(point, result);

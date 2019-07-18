@@ -37,7 +37,7 @@ public final class DataMocker {
         }
         File[] files = mockDataDir.listFiles((dir, name) -> name.endsWith(".yaml")
             // 过滤测试方法的数据
-            && !name.equals(MockConfig.getTestClassAndMethod().getMethod().getName()));
+            && !name.startsWith(MockConfig.getTestClassAndMethod().getMethod().getName()));
         if (files == null) {
             // 测试文件不存在
             log.error("未找到测试数据");
