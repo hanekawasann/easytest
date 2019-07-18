@@ -1,7 +1,17 @@
-!com.yukms.easy.test.test.mock.MockData
-mockClassName: com.yukms.easy.test.mail.MailServiceImpl
-methodName: sendMail
-args:
-  - 123456
-  - 下单成功
-result: true
+--- 
+!com.yukms.easy.test.mock.data.MockData {
+   ? "mockClass"
+   : !java.lang.Class "com.yukms.easy.test.mail.MailServiceImpl",
+   ? "methodName"
+   : !java.lang.String "sendMail",
+   ? "args"
+   : [
+      !java.lang.Long "123456",
+      !java.lang.String "下单成功"
+   ],
+   ? "result"
+   : !java.lang.Boolean "true",
+   ? "throwable"
+   : !java.lang.Throwable,
+}
+...

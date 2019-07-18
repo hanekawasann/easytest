@@ -11,25 +11,22 @@ import java.util.Arrays;
 import java.util.Date;
 
 import com.alibaba.ttl.TransmittableThreadLocal;
-import com.esotericsoftware.yamlbeans.YamlConfig;
-import com.esotericsoftware.yamlbeans.YamlReader;
-import com.esotericsoftware.yamlbeans.YamlWriter;
 import com.yukms.easy.test.mock.data.DataRecord;
 import com.yukms.easy.test.mock.data.MockData;
+import com.yukms.yamlxbeans.YamlxConfig;
+import com.yukms.yamlxbeans.YamlxReader;
+import com.yukms.yamlxbeans.YamlxWriter;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.junit.Test;
-import org.springframework.util.ReflectionUtils;
 
 /**
  * @author yukms 763803382@qq.com 2019/6/28 11:42
  */
 @Log4j2
 public final class MockDataUtils {
+    public static final YamlxConfig CONFIG = new YamlxConfig();
     private static final ThreadLocal<DataRecord> RECORD_DATA = TransmittableThreadLocal.withInitial(DataRecord::new);
-    private static final YamlConfig CONFIG = new YamlConfig();
-    private static final String DATA_RECORDS_FILE_NAME = "dataRecords.yaml";
     private static final String FOLDER_NAME_SPLIT = "_";
     private static final String FILE_PATH_SPLIT = "\\";
     private static final String FILE_SUFFIX = ".yaml";
@@ -37,19 +34,23 @@ public final class MockDataUtils {
     private static final String RECORD_FILE_PATH_PREFIX;
 
     static {
-        YamlConfig.WriteConfig writeConfig = CONFIG.writeConfig;
-        // 保存默认字段（BUG：无法保存null）
-        //writeConfig.setWriteDefaultValues(true);
+        YamlxConfig.WriteConfig writeConfig = CONFIG.writeConfig;
+        // 保存默认字段
+        writeConfig.setWriteDefaultValues(true);
         // 文件字段顺序与字段定义顺序相同
         writeConfig.setKeepBeanPropertyOrder(true);
-        // 格式化输出（BUG：解析可能报错）
-        //writeConfig.setCanonical(true);
+        // 格式化输出
+        writeConfig.setCanonical(true);
         // 不换行
         writeConfig.setWrapColumn(Integer.MAX_VALUE);
         // 中文不转义
         writeConfig.setEscapeUnicode(false);
         // 总是输出类名
-        writeConfig.setWriteClassname(YamlConfig.WriteClassName.ALWAYS);
+        writeConfig.setWriteClassname(YamlxConfig.WriteClassName.ALWAYS);
+        // 输出开始标记
+        writeConfig.setExplicitFirstDocument(true);
+        // 输出结束标记
+        writeConfig.setExplicitEndDocument(true);
 
         File file = new File(".record");
         if (!file.exists()) {
@@ -78,35 +79,16 @@ public final class MockDataUtils {
         String fileName = dataRecord.getNum().getAndIncrement() + FOLDER_NAME_SPLIT + mockClazz.getSimpleName() +
             CLASS_METHOD_SPLIT + method.getName() + FILE_SUFFIX;
         MockData data = new MockData();
-        data.setMockClassName(mockClazz.getName());
+        data.setMockClass(mockClazz);
         data.setMethodName(method.getName());
         data.setArgs(new ArrayList<>(Arrays.asList(point.getArgs())));
         if (result instanceof Throwable) {
-            data.setExpectedClassName(result.getClass().getName());
+            data.setThrowable((Throwable) result);
         } else {
             data.setResult(result);
         }
         saveData(folderPath + fileName, data);
-        log.info("保存记录文件" + folderPath + fileName);
-        // 记录文件
-        dataRecord.addFileNames(fileName);
-        saveSimpleData(folderPath + DATA_RECORDS_FILE_NAME, dataRecord.getFileNames());
-    }
-
-    /**
-     * 获取Junit声明的测试方法
-     *
-     * @return Junit声明的测试方法
-     * @throws NoSuchMethodException 没有找到测试的方法
-     */
-    public static StackTraceElement getTestStackTraceElement() throws NoSuchMethodException {
-        StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
-        for (StackTraceElement element : stackTrace) {
-            if (isTestStackTraceElement(element)) {
-                return element;
-            }
-        }
-        throw new NoSuchMethodException("未找到Junit测试方法");
+        log.info("保存记录文件 " + folderPath + fileName);
     }
 
     /**
@@ -116,9 +98,9 @@ public final class MockDataUtils {
      * @return 测试数据
      */
     public static MockData loadData(File file) throws IOException {
-        YamlReader reader = null;
+        YamlxReader reader = null;
         try {
-            reader = new YamlReader(new FileReader(file), CONFIG);
+            reader = new YamlxReader(new FileReader(file), CONFIG);
             return reader.read(MockData.class);
         } finally {
             if (reader != null) {
@@ -127,27 +109,14 @@ public final class MockDataUtils {
         }
     }
 
-    private static boolean isTestStackTraceElement(StackTraceElement element) {
-        try {
-            Class<?> clazz = Class.forName(element.getClassName());
-            Method method = ReflectionUtils.findMethod(clazz, element.getMethodName());
-            if (method != null) {
-                if (method.getAnnotation(Test.class) != null) {
-                    return true;
-                }
-            }
-        } catch (ClassNotFoundException ignored) { }
-        return false;
-    }
-
     private static void saveData(String path, Object obj) throws IOException {
-        YamlWriter writer = new YamlWriter(new FileWriter(path), CONFIG);
+        YamlxWriter writer = new YamlxWriter(new FileWriter(path), CONFIG);
         writer.write(obj);
         writer.close();
     }
 
     private static void saveSimpleData(String path, Object obj) throws IOException {
-        YamlWriter writer = new YamlWriter(new FileWriter(path));
+        YamlxWriter writer = new YamlxWriter(new FileWriter(path));
         writer.write(obj);
         writer.close();
     }
@@ -160,7 +129,7 @@ public final class MockDataUtils {
         File file = new File(folderPath);
         if (!file.exists()) {
             file.mkdirs();
-            log.info("创建记录文件夹" + folderName);
+            log.info("创建记录文件夹 " + folderName);
         }
         return folderPath;
     }

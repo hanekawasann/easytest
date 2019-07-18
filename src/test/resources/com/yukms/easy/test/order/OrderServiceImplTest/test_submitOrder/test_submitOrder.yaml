@@ -1,12 +1,13 @@
 --- 
 !com.yukms.easy.test.mock.data.MockData {
    ? "mockClass"
-   : !java.lang.Class "com.yukms.easy.test.user.UserCheckServiceImpl",
+   : !java.lang.Class "com.yukms.easy.test.order.OrderServiceImpl",
    ? "methodName"
-   : !java.lang.String "check",
+   : !java.lang.String "submitOrder",
    ? "args"
    : [
-      !java.lang.Long "123456"
+      !java.lang.Long "123456",
+      !java.lang.Long "78910"
    ],
    ? "result"
    : !java.lang.Boolean "true",

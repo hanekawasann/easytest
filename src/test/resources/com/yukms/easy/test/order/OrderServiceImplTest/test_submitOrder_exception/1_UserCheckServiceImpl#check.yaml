@@ -1,6 +1,0 @@
-!com.yukms.easy.test.test.mock.MockData
-mockClassName: com.yukms.easy.test.user.UserCheckServiceImpl
-methodName: check
-args:
-  - 123456
-result: true

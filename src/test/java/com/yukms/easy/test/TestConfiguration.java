@@ -11,6 +11,6 @@ import org.springframework.context.annotation.Configuration;
 public class TestConfiguration {
     @Bean
     public MockDataAspectJ getMockAspectJ() {
-        return new MockDataAspectJ(true);
+        return new MockDataAspectJ();
     }
 }

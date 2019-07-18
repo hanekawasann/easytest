@@ -11,7 +11,7 @@ import lombok.Data;
 @Data
 public class MockData {
     /** mock的类 */
-    private String mockClassName;
+    private Class<?> mockClass;
     /** mock的方法 */
     private String methodName;
     /** 参数 */
@@ -19,5 +19,5 @@ public class MockData {
     /** 结果 */
     private Object result;
     /** 异常 */
-    private String expectedClassName;
+    private Throwable throwable;
 }

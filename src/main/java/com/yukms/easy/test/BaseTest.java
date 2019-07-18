@@ -1,9 +1,13 @@
 package com.yukms.easy.test;
 
+import java.io.IOException;
+
+import com.yukms.easy.test.mock.MockConfig;
 import com.yukms.easy.test.mock.data.DataMocker;
 import com.yukms.easy.test.mock.junit.TestClassAndMethod;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 
@@ -17,13 +21,19 @@ public class BaseTest {
     public TestClassAndMethod testClassAndMethod = new TestClassAndMethod();
 
     @Before
-    public void initTestMethod() {
+    public final void beforeTestMethod() throws IOException {
+        MockConfig.setTestClassAndMethod(testClassAndMethod);
         Class<?> clazz = testClassAndMethod.getClazz();
         String pathPrefix = clazz.getResource("").getPath().replaceFirst(PATH_SPLIT, StringUtils.EMPTY);
         String className = clazz.getSimpleName();
         String methodName = testClassAndMethod.getMethod().getName();
         String mockDataDirPath = pathPrefix + className + PATH_SPLIT + methodName;
-        log.info("测试数据路径" + mockDataDirPath);
+        log.info("测试数据路径 " + mockDataDirPath);
         DataMocker.setMockData(mockDataDirPath);
+    }
+
+    @After
+    public final void afterTestMethod() {
+        DataMocker.clearData();
     }
 }

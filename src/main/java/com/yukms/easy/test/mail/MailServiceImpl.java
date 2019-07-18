@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class MailServiceImpl implements IMailService {
     @Override
     public boolean sendMail(long userId, String content) {
-        //return true;
-        throw new RuntimeException();
+        return true;
+        //throw new RuntimeException();
     }
 }

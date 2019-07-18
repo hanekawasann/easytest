@@ -1,7 +1,5 @@
 package com.yukms.easy.test.mock.data;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import lombok.Data;
@@ -15,10 +13,4 @@ public class DataRecord {
     private AtomicInteger num = new AtomicInteger(1);
     /** 文件夹名 */
     private String folderPath;
-    /** 文件名 */
-    private List<String> fileNames = new ArrayList<>();
-
-    public boolean addFileNames(String fileName) {
-        return fileNames.add(fileName);
-    }
 }

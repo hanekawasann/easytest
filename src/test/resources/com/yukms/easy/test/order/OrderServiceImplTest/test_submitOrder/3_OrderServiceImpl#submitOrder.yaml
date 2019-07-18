@@ -1,7 +1,0 @@
-!com.yukms.easy.test.test.mock.MockData
-mockClassName: com.yukms.easy.test.order.OrderServiceImpl
-methodName: submitOrder
-args:
-  - 123456
-  - 78910
-result: true
